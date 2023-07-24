@@ -15,6 +15,7 @@ The changes I made are to meet those requirements.
 - Copy the `.env.example` file
 - Rename the example file as `.env`
 - Provide the necessary connection variables in the env file
+- Save auth token as `custom-auth-token` in localStorage
 
 ## License
 This project is licensed under the Apache-2.0 License.
