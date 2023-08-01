@@ -26,7 +26,8 @@ const StateDebug = () => {
   const prevUpdates = useRef<Record<string, any>>({});
 
   useEffect(() => {
-    console.group(`[State] - ${formatDate()}`);
+    console.group(`[State] - ${formatDate()}`); 
+    console.log("previous update : "+prevUpdates);
     const updates = snapshot.getNodes_UNSTABLE({ isModified: true });
     for (const node of updates) {
       console.group(node.key);

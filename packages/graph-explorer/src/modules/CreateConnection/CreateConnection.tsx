@@ -133,7 +133,7 @@ const CreateConnection = ({
       initialData?.name ||
       `Connection (${formatDate(new Date(), "yyyy-MM-dd HH:mm")})`,
     url: initialData?.url || "",
-    proxyConnection: initialData?.proxyConnection || false,
+    proxyConnection: initialData?.proxyConnection || true,
     graphDbUrl: initialData?.graphDbUrl || "",
     awsAuthEnabled: initialData?.awsAuthEnabled || false,
     awsRegion: initialData?.awsRegion || "",
@@ -249,18 +249,6 @@ const CreateConnection = ({
             />
           </div>
         )}
-        {form.proxyConnection && (
-          <div className={pfx("input-url")}>
-            <Checkbox
-              value={"awsAuthEnabled"}
-              checked={form.awsAuthEnabled}
-              onChange={e => {
-                onFormChange("awsAuthEnabled")(e.target.checked);
-              }}
-              label={"AWS IAM Auth Enabled"}
-            />
-          </div>
-        )}
         {form.proxyConnection && form.awsAuthEnabled && (
           <div className={pfx("input-url")}>
             <Input
@@ -273,48 +261,6 @@ const CreateConnection = ({
               validationState={
                 hasError && !form.awsRegion ? "invalid" : "valid"
               }
-            />
-          </div>
-        )}
-      </div>
-      <div className={pfx("configuration-form")}>
-        <Checkbox
-          value={"enableCache"}
-          checked={form.enableCache}
-          onChange={e => {
-            onFormChange("enableCache")(e.target.checked);
-          }}
-          styles={{
-            label: {
-              display: "block"
-            }
-          }}
-          label={
-            <div style={{ display: "flex", alignItems: "center", gap: 2 }}>
-              Enable Cache
-              <Tooltip
-                text={
-                  <div style={{ maxWidth: 300 }}>
-                    Requests made by the Graph Explorer can be temporarily stored in
-                    the browser cache for quick access to the data.
-                  </div>
-                }
-              >
-                <div>
-                  <InfoIcon style={{ width: 18, height: 18 }} />
-                </div>
-              </Tooltip>
-            </div>
-          }
-        />
-        {form.enableCache && (
-          <div className={pfx("input-url")}>
-            <Input
-              label="Cache Time (minutes)"
-              type={"number"}
-              value={form.cacheTimeMs}
-              onChange={onFormChange("cacheTimeMs")}
-              min={0}
             />
           </div>
         )}
